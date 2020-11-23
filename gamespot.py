@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 import sqlite3
+from functions import insertQuery
+
+
 
 url = "https://www.gamespot.com/news/"
 
@@ -38,40 +41,39 @@ for i in urls_list:
     print(i)
 
 
-ej_url = urls_list[0]
+for article in urls_list:
 
+    try:
+        art = requests.get(article)
+        if art.status_code == 200:
+            soup_art = BeautifulSoup(art.text, "lxml")
 
-try:
-    art = requests.get(ej_url)
-    if art.status_code == 200:
-        soup_art = BeautifulSoup(art.text, "lxml")
+            #Extract title
+            title = soup_art.find("h1", attrs={"class": "news-title"}).get_text()
+            print(title)
 
-        #Extract title
-        title = soup_art.find("h1", attrs={"class": "news-title"}).get_text()
-        print(title)
+            #Extract Subtitle
+            subTitle = soup_art.find("h2", attrs={"class": "news-deck"}).get_text()
+            print(subTitle)
 
-        #Extract Subtitle
-        subTitle = soup_art.find("h2", attrs={"class": "news-deck"}).get_text()
-        print(subTitle)
+            #Extract article text
+            art_text = soup_art.find("div", attrs={"class": "js-content-entity-body"}).find_all("p")
+            textString = ""
+            for e in art_text:
+                textString += e.get_text() + "\n"
+            print(textString)
 
-        #Extract article text
-        art_text = soup_art.find("div", attrs={"class": "js-content-entity-body"}).find_all("p")
-        textString = ""
-        for e in art_text:
-            textString += e.get_text() + "\n"
-        print(textString)
+            #Extract author
+            author = soup_art.find("a", "byline-author__name").get_text()
+            print(author)
 
-        #Extract author
-        author = soup_art.find("a", "byline-author__name").get_text()
-        print(author)
+            #Extract date
+            date_art = soup_art.find("time", attrs={"pubtime": "pubtime"}).get("datetime")
+            print(type(date_art))
+            print(3)
 
-        #Extract date
-        date_art = soup_art.find("time", attrs={"pubtime": "pubtime"}).get("datetime")
-        print(type(date_art))
-        print(3)
-
-except Exception as identifier:
-    pass
+    except Exception as identifier:
+        pass
 
     
 
