@@ -77,6 +77,7 @@ try:
     if art.status_code == 200:
         s_art = BeautifulSoup(art.text, "lxml")
         #Extraer titulo
+
         title = s_art.find("h1", attrs={"class": "article-title"}).get_text()
         print(title)
 
@@ -103,7 +104,7 @@ try:
             img_art = img_list[-1]
             print(img_art.get("data-src"))
         
-        img_req = requests.get(img_art.get("data-src"))
+        # img_req = requests.get(img_art.get("data-src"))
 
 
 

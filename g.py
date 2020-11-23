@@ -24,24 +24,24 @@ for i in div_arts.find_next_siblings():
     except Exception as o:
         print(o)
 
-urls_list = ["https://gamewave.fr/actualites/" + x for x in links]
+urls_list = ["https://gamewave.fr" + x for x in links]
 
-for i in urls_list:
-    print(i)
-
-ej_url = urls_list[0]
+for url in urls_list:
+     print(url)
 
 list_titre = []
 list_soustitre = []
 list_image = []
 list_texte= []
+
 for lien in urls_list:
 
      try:
           art = requests.get(lien)
+          print(art.status_code)
           if art.status_code == 200:
 
-               soup_art = BeautifulSoup(art.text, "lxml")
+               soup_art = BeautifulSoup(art.text, "html.parser")
                #Extraire le  titre:
                infos = soup_art.find("div", attrs ={"id": "informations-content"})
                
