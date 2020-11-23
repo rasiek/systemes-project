@@ -38,13 +38,11 @@ for lien in urls_list:
 
      try:
           art = requests.get(lien)
-          print(art.status_code)
           if art.status_code == 200:
 
                soup_art = BeautifulSoup(art.text, "html.parser")
                #Extraire le  titre:
                infos = soup_art.find("div", attrs ={"id": "informations-content"})
-               
                titre = infos.find("h1").get_text()
                list_titre.append(titre)
 
@@ -56,12 +54,27 @@ for lien in urls_list:
                texte = soup_art.find("div", attrs={"class": "left"}).get_text()
                list_texte.append(texte) 
                #extraire l'image de l'artcile 
-               image = soup_art.find("div" , attrs={"id": "image"}).get_text()
-               list_image.append(image)
+               image = soup_art.find("div" , attrs={"id": "image"}).get("style")
+               url = image.split("'")
+               list_image.append(url[1])
 
      except:
           pass
 
 
 
-print(list_titre)
+#for titre in list_titre:
+#     print(titre)
+#    print('\n')
+
+#for soustitre in list_soustitre:
+     #print(soustitre)
+     #print('\n')
+
+for texte in list_texte:
+     print(texte)
+     print('\n')
+
+for image in list_image:
+     print(image)
+     print('\n')
