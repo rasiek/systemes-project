@@ -63,11 +63,11 @@ except Exception as identifier:
 
     
 
-# for sib in div_arts.find_next_siblings():
-#     link = sib.find("a", "horizontal-card-item__link").get("href")
-#     as_links.append(link) 
+ #for sib in div_arts.find_next_siblings():   
+    #link = sib.find("a", "horizontal-card-item__link").get("href")
+    #as_links.append(link) 
 
-# print(as_links)
+#print(as_links)
 
 
 
