@@ -36,3 +36,7 @@ def insertQuery(titre, stitre, img, lien, text, author="Pas d'author"):
       'lien': lien,  
       'text': text,  
     })
+
+    conn.close()
+
+
