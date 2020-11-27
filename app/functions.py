@@ -11,6 +11,7 @@ def insertQuery(titre, stitre, lien, text, img="None", author="None"):
         print(e)
 
     dbCursor = conn.cursor()
+    
     sql_query= """
     INSERT INTO articles (
         titre,
