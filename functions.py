@@ -11,6 +11,7 @@ def insertQuery(titre, stitre, img, lien, text, author="Pas d'author"):
         print(e)
 
     dbCursor = conn.cursor()
+
     sql_query= """
     INSERT INTO articles (
         titre,
@@ -28,15 +29,41 @@ def insertQuery(titre, stitre, img, lien, text, author="Pas d'author"):
         :text
     )
     """
-    dbCursor.execute(sql_query, {
-      'titre': titre,  
-      'stitre': stitre,  
-      'img': img,  
-      'author': author,  
-      'lien': lien,  
-      'text': text,  
-    })
+    try:
+        dbCursor.execute(sql_query, {
+        'titre': titre,  
+        'stitre': stitre,  
+        'img': img,  
+        'author': author,  
+        'lien': lien,  
+        'text': text,  
+        })
+    except Exception as e:
+        print(e)
+
+    print("true")
 
     conn.close()
 
 
+def rechercheQuery(critéres):
+
+    try:
+
+        conn = sqlite3.connect('arts.db')
+    except Exception as e:
+        print(e)
+
+    dbCursor = conn.cursor()
+
+    recherche = """
+    select * from articles 
+    where text like ?
+    """
+    dbCursor.execute(recherche, (f"%{critéres}",))
+    resultat = dbCursor.fetchone()
+    
+    print(resultat)
+    dbCursor.close()
+
+    

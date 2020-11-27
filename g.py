@@ -1,5 +1,5 @@
 import requests
-
+from functions import insertQuery
 from bs4 import BeautifulSoup
 
 url = "https://gamewave.fr/actualites/"
@@ -26,8 +26,6 @@ for i in div_arts.find_next_siblings():
 
 urls_list = ["https://gamewave.fr" + x for x in links]
 
-for url in urls_list:
-     print(url)
 
 list_titre = []
 list_soustitre = []
@@ -48,28 +46,29 @@ for lien in urls_list:
 
                #Extraire l'introduction:
                soustitre = soup_art.find("div", attrs={"id": "introduction"}).get_text()
-               list_soustitre.append(soustitre)
+             
 
                #Extraire article text
                texte = soup_art.find("div", attrs={"class": "left"}).get_text()
-               list_texte.append(texte) 
+           
                #extraire l'image de l'artcile 
                image = soup_art.find("div" , attrs={"id": "image"}).get("style")
-               url = image.split("'")
-               list_image.append(url[1])
+               url_img = image.split("'")
+
+               insertQuery(titre, soustitre, url_img[1],lien, texte)
 
      except:
           pass
 
 
 
-#for titre in list_titre:
-#     print(titre)
-#    print('\n')
+for titre in list_titre:
+     print(titre)
+     print('\n')
 
-#for soustitre in list_soustitre:
-     #print(soustitre)
-     #print('\n')
+for soustitre in list_soustitre:
+     print(soustitre)
+     print('\n')
 
 for texte in list_texte:
      print(texte)
@@ -78,3 +77,4 @@ for texte in list_texte:
 for image in list_image:
      print(image)
      print('\n')
+
