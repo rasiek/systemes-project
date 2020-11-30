@@ -28,4 +28,4 @@ def conn(db_file):
     
 
 if __name__ == '__main__':
-    conn('arts.db')
+    conn('bd/arts.db')

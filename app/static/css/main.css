@@ -1,0 +1,15 @@
+
+body{
+    margin: 0;
+}
+.bar-recherche{
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bar-recherche input {
+    width: 40vw;
+    margin:10px;
+
+}

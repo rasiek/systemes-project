@@ -1,2 +1,6 @@
 ven/
 downsite.py
+test.py
+test.html
+__pycache__
+app/__pycache__

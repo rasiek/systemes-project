@@ -6,7 +6,7 @@ def insertQuery(titre, stitre, lien, text, img="None", author="None"):
     conn = None
 
     try:
-        conn = sqlite3.connect('/bd/arts.db')
+        conn = sqlite3.connect('bd/arts.db')
     except Exception as e:
         print(e)
 
@@ -40,4 +40,26 @@ def insertQuery(titre, stitre, lien, text, img="None", author="None"):
 
     print("Ajout reussi")
 
+    conn.commit()
+
     dbCursor.close()
+
+def rechercheQuery(critéres):
+
+    
+
+    conn = sqlite3.connect('bd/arts.db')
+    conn.row_factory = sqlite3.Row
+    dbCursor = conn.cursor()
+
+    recherche = """
+    select * from articles 
+    where text like ?
+    """
+    dbCursor.execute(recherche, (f"%{critéres}%",))
+    resultat = dbCursor.fetchone()
+
+    print(resultat)
+    dbCursor.close()
+
+    return resultat

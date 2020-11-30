@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import sqlite3
-from functions import insertQuery
+from app import functions as fc
 
 
 
@@ -74,7 +74,7 @@ for url in urls_list:
 
             print(textString)
 
-            insertQuery(title, subTitle, url, textString)
+            fc.insertQuery(title, subTitle, url, textString)
             
             # a_text_list.append(textString)
 
