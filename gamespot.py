@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import sqlite3
 
 url = "https://www.gamespot.com/news/"
 
@@ -29,6 +30,8 @@ for i in div_arts.find_next_siblings():
     except Exception as e:
         print(e)
 
+
+
 urls_list = ["https://www.gamespot.com" + x for x in as_links]
 
 for i in urls_list:
@@ -52,9 +55,20 @@ try:
         print(subTitle)
 
         #Extract article text
-        art_text = soup_art.find("h2", attrs={"class": "news-deck"}).get_text()
-        print(subTitle)
+        art_text = soup_art.find("div", attrs={"class": "js-content-entity-body"}).find_all("p")
+        textString = ""
+        for e in art_text:
+            textString += e.get_text() + "\n"
+        print(textString)
 
+        #Extract author
+        author = soup_art.find("a", "byline-author__name").get_text()
+        print(author)
+
+        #Extract date
+        date_art = soup_art.find("time", attrs={"pubtime": "pubtime"}).get("datetime")
+        print(type(date_art))
+        print(3)
 
 except Exception as identifier:
     pass
