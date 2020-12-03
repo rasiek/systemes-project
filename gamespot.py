@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import sqlite3
 from app import functions as fc
 
 
@@ -43,6 +42,7 @@ a_text_list = []
 author_list = []
 date_list = []
 
+#Creation objet BeautifulSoup
 for url in urls_list:
     try:
         art = requests.get(url)

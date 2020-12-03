@@ -3,17 +3,19 @@
 {% block content %}
 
     <div class="bar-recherche">
-        <label for="name">Recherche</label>
-        <input type="text" id="name" name="name" required>
-        <input type="button" value="Rechercher" method=POST>
+        <form action="localhost:5000/recherche" method="POST">
+            <label for="name">Recherche</label>
+            <input type="text" id="name" name="recherche-form" required>
+            <input type="button" value="Rechercher">
+        </form>
     </div>
     <div>
         <ul>
-            <li>{{ article['titre'] }}</li>
-            <li>{{ article['soustitre'] }}</li>
-            <li>{{ article['author'] }}</li>
-            <li>{{ article['text'] }}</li>
-            <li>{{ article['lien'] }}</li>
+            <li>{{ titre }}</li>
+            <li>{{ soustitre }}</li>
+            <li>{{ author }}</li>
+            <li>{{ text|safe }}</li>
+            <li>{{ lien }}</li>
         </ul>
     </div>
 {% endblock %}

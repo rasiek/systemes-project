@@ -45,9 +45,10 @@ def insertQuery(titre, stitre, lien, text, img="None", author="None"):
     dbCursor.close()
 
 def rechercheQuery(critéres):
-
+    """
+    Fonction qui recupere et retourne un article de la base de données sur un critere donné en parametre
+    """
     
-
     conn = sqlite3.connect('bd/arts.db')
     conn.row_factory = sqlite3.Row
     dbCursor = conn.cursor()
