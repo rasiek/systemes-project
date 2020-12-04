@@ -3,12 +3,13 @@
 {% block content %}
 
     <div class="bar-recherche">
-        <form action="localhost:5000/recherche" method="POST">
+        <form id="form-recherche" method="POST">
             <label for="name">Recherche</label>
             <input type="text" id="name" name="recherche-form" required>
-            <input type="button" value="Rechercher">
+            <input type="submit" value="Rechercher">
         </form>
     </div>
+    {% if titre %}
     <div>
         <ul>
             <li>{{ titre }}</li>
@@ -18,4 +19,5 @@
             <li>{{ lien }}</li>
         </ul>
     </div>
+    {% endif %}
 {% endblock %}

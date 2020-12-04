@@ -33,21 +33,36 @@ def index():
 @app.route('/recherche', methods=['POST','GET'])
 def recherche():
 
+    if request.method == 'POST':
+        critere = request.form['recherche-form']
+
+        art = rechercheQuery(critere)
+        art_text = re.sub(critere, f"<U><strong>{critere}</strong></U>", art['text'], flags=re.I)
+        print(art['titre'])
+        
+        context = {
+        'titre': art['titre'],
+        'soustitre': art['soustitre'],
+        'author': art['author'],
+        'text': art_text,
+        'lien': art['lien']
+        }
+
+        return render_template('recherche.html', **context)
+
+
+    # article = rechercheQuery(critere)
+
+    # c
+
+    # context = {
+    #     'titre': article['titre'],
+    #     'soustitre': article['soustitre'],
+    #     'author': article['author'],
+    #     'text': article_text,
+    #     'lien': article['lien']
+    # }
+
     
-    critere = request.form['recherche-form']
-
-    article = rechercheQuery(critere)
-
-    article_text = re.sub(critere, f"<U><strong>{critere}</strong></U>", article['text'], flags=re.I)
-
-    context = {
-        'titre': article['titre'],
-        'soustitre': article['soustitre'],
-        'author': article['author'],
-        'text': article_text,
-        'lien': article['lien']
-    }
-
-    
-    return render_template('recherche.html', **context)
+    return render_template('recherche.html')
 
