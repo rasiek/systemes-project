@@ -2,6 +2,12 @@
 body{
     margin: 0;
 }
+
+.hero-title {
+    display: flex;
+    justify-content: center;
+}
+
 .bar-recherche{
     margin: auto;
     display: flex;
@@ -12,4 +18,14 @@ body{
     width: 40vw;
     margin:10px;
 
+}
+
+.add-critere {
+    display: flex;
+    justify-content: center;
+}
+
+.new-critere {
+    display: none;
+    justify-content: center;
 }
