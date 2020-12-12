@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/static/css/main.css">
     <script src="https://kit.fontawesome.com/3acd985528.js" crossorigin="anonymous"></script>
     <script src="/static/js/script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:ital@1&display=swap" rel="stylesheet">
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
@@ -15,5 +17,6 @@
 <body>
     {% block content %}
     {% endblock %}
+    <video autoplay muted loop src="/static/videos/bg-video.mp4" class="bg-video"></video>
 </body>
 </html>

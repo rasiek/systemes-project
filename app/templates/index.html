@@ -1,40 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="vp1-container">
+        <div class="hero-title">
+            <h1>Jeux-Vidéos</h1>
+        </div>
 
-    <div class="hero-title">
-        <h1>Jeux-Vidéos</h1>
+        <div class="bar-recherche">
+            <form class="form-rech" id="form-recherche" method="POST">
+                <div>
+                    <input type="text" id="input-form" name="input-critere1" placeholder="Critère de recherche" required>
+                    <button id="btn" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+
+                <label for="add-critere">Ajouter critère de recherche</label>
+                <input type="checkbox" id="add-critere2" class="add-critere2">
+
+                
+                <input type="hidden" class="input-critere2" id="input-critere2" name="input-critere2" placeholder="Deuxième critère de recherche">  
+                
+            </form>
+
+        </div>
     </div>
 
-    <div class="bar-recherche">
-        <form id="form-recherche" method="POST">
-            
-            <input type="text" id="name" name="recherche-form" placeholder="Recherche" required>
-            <button id="btn" type="submit"><i class="fas fa-search"></i></button>
-            
-        </form>
-    </div>
-
-    <div class="add-critere">
-        <button id="btn-add-critere" onclick="addCritere()"><i class="fas fa-plus"></i></button>
-    </div>
-
-    <div id="new-critere" class="new-critere">
-        <form id="form-recherche2" method="POST">
-            <input type="text" id="name" name="recherche-form2" placeholder="Recherche" required>  
-        </form>
-
-        <button type="submit" onclick="sendForms()"><i class="fas fa-search"></i></button>
-    </div>
 
     {% if titre %}
-    <div>
+    <div class="article">
         <ul>
             <li>{{ titre }}</li>
             <li>{{ soustitre }}</li>
             <li>{{ author }}</li>
             <li>{{ text|safe }}</li>
-            <li><a href="{{ lien }}">Article Originale</a></li>
+            <li><a href="{{ lien }}" target="_blank">Article Originale</a></li>
         </ul>
     </div>
     {% endif %}

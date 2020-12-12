@@ -1,15 +1,15 @@
+console.log("funcionas")
 
-function addCritere() {
-    var x = document.getElementById("new-critere")
-    if (x.style.display === "none") {
-        x.style.display = "flex";
+var checkbox = document.getElementById('add-critere2')
+checkbox.addEventListener('change', function() {
+    if (this.checked) {
+        var inputCri2 = document.getElementById('input-critere2')
+        inputCri2.setAttribute('type', 'text')
     } else {
-        x.style.display = "none";
+        var inputCri2 = document.getElementById('input-critere2')
+        inputCri2.setAttribute('type', 'hidden')
     }
-}
+})
 
-function sendForms() {
-    
-    document.getElementById("form-recherche").submit();
-    document.getElementById("form-recherche2").submit();
-}
+
+

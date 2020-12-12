@@ -1,7 +1,7 @@
 """
 Routes de l'application
 """
-#Importation des functions et modules pour le functionements des routes
+#Importation des functions et modules pour le fonctionements des routes
 from app.functions import rechercheQuery, rechercheQueryADeuxCri
 from flask import render_template, request
 from app import app
@@ -15,13 +15,18 @@ def recherche():
     #Condition qui valide l'existance d'une requête "POST" et recupère l'information contenu dans le bar de recherche d'ID "recherche-form"
     if request.method == 'POST':
         #Creation d'une variable qui contient le critere de recherche
-        critere = request.form['recherche-form']
+        
+        critere = request.form['input-critere1']
 
+        #Validation de l'existance d'une deuxième critère de recherche
+        if request.form['input-critere2'] == "":
+            #Si l'input[''input-critere2] est un String vide, on sorte du conditionnel
+            pass
+        else:
+            #Creation d'une autre variable qui contient le deuxième critère de recherche
+            critere2 = request.form['input-critere2']
 
-        try:
-
-            critere2 = request.form['recherche-form2']
-
+            #Appel à la function rechercheQueryADeuxCri et recuperation des informations par rapport au critère
             art2Cri = rechercheQueryADeuxCri(critere, critere2)
 
             if art2Cri is None:
@@ -29,18 +34,22 @@ def recherche():
                 noMatch = True
                 return render_template("index.html", noMatch=noMatch)
 
-
+            #Stimagtisation des critères de recherche dans le texte de l'article, en cherchant les critères à travers du module re
+            #Utilisation du flag re.I pour chercher les critères en Majuscule et Miniscule
+            #Uilisation d'une liste pour enregistrer le critère à chercher dans le text et son remplacement
             replaceList = [
-                (critere, f"<U><strong class='critere'>{critere}</strong></U>"),
-                (critere2, f"<U><strong class='critere'>{critere}</strong></U>")
+                (critere, f"<U><strong class='critere'>{critere.capitalize()}</strong></U>"),
+                (critere2, f"<U><strong class='critere'>{critere2.capitalize()}</strong></U>")
             ]
-
+            #Création de la variable qui contient le text de l'article
             artText2Cri = art2Cri['text']
 
+            #Boucle for où il est appelé la methode sub pour remplacer les critères originaux pour le code qui va les stigmatiser
             for critere, critereStig in replaceList:
-                
-                artText2Cri = re.sub(critere, critereStig, art2Cri['text'], flags=re.I)
+                artText2Cri = re.sub(critere, critereStig, artText2Cri, flags=re.I)
+                print(critere, critereStig)
 
+            #Creation du dictionaire contenant les informations de l'article trouvé
             context = {
             'titre': art2Cri['titre'],
             'soustitre': art2Cri['soustitre'],
@@ -48,19 +57,18 @@ def recherche():
             'text': artText2Cri,
             'lien': art2Cri['lien']
             }
+            #Appel à la function render_template pour afficher le fichier html lié à la route et 
+            #envoie du dictionaire avec l'article
+            return render_template("index.html", **context)          
 
-            return render_template("index.html", **context)
-
-        except Exception as e:
-            print(e)            
-
+        #Si l'input[''input-critere2] est un String vide, on continue au dessus
 
         #Appel à la function rechercheQuery et recuperation des informations par rapport au critère
         art = rechercheQuery(critere)
 
         #Stimagtisation du critere de recherche dans le texte de l'article, en cherchant le critere à travers du module re
         #Utilisation du flag re.I pour chercher le critere en Majuscule et Miniscule
-        art_text = re.sub(critere, f"<U><strong class='critere'>{critere}</strong></U>", art['text'], flags=re.I)
+        art_text = re.sub(critere, f"<U><strong class='critere'>{critere.capitalize()}</strong></U>", art['text'], flags=re.I)
         
         #Creation du dictionaire contenant les informations de l'article trouvé  
         context = {
