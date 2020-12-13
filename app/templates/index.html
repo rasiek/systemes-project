@@ -35,5 +35,9 @@
             <a href="{{ lien }}" target="_blank">Article Originale</a>
 
     </div>
+    {% elif noMatch %}
+        <div class="not-found">
+            <h1>Il n'y a pas des articles avec les critères sugerès</br>D:</h1>
+        </div>
     {% endif %}
 {% endblock %}

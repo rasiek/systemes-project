@@ -193,3 +193,21 @@ body{
     color: cadetblue;
     transition: ease 1s;
 }
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vw;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+
+.not-found h1 {
+    font-family: 'Montserrat';
+    width: 80%;
+    text-align: center;
+    align-self: center;
+
+}

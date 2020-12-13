@@ -82,7 +82,7 @@ def gamespotScrapper():
                         textString += e.get_text() + "\n"
 
                     #Appel à la fonction insertQuery pour inserer l'article dans la base de données
-                    fc.insertQuery(title, subTitle, url, textString)
+                    fc.insertQuery(title, subTitle, url, textString, author)
 
         except:
             pass

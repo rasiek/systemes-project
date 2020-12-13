@@ -3,7 +3,7 @@ Functions d'insertion et recherche des articles dans la base de données
 """
 import sqlite3
 
-def insertQuery(titre, stitre, lien, text, img="None", author="None"):
+def insertQuery(titre, stitre, lien, text, author, img="None"):
     """fonction qui se connecte à la base de données et insert les informations des articles 
         scrappées
         @param titre: titre de l'article 
