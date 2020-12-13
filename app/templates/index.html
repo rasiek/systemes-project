@@ -32,12 +32,12 @@
             <span class="first-span">{{ soustitre }}</span>
             <span>Par: {% if author == 'None' %} Gamespot {% else %} {{ author }} {% endif %}</span>
             <p>{{ text|safe }}</p>
-            <a href="{{ lien }}" target="_blank">Article Originale</a>
+            <a href="{{ lien }}" target="_blank">Article Original</a>
 
     </div>
     {% elif noMatch %}
         <div class="not-found">
-            <h1>Il n'y a pas des articles avec les critères sugerès</br>D:</h1>
+            <h1>Il n'y a pas d'articles avec les critères sugerès</br>D:</h1>
         </div>
     {% endif %}
 {% endblock %}

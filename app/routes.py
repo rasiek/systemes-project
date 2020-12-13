@@ -15,12 +15,13 @@ import re
 def recherche():
     #Condition qui valide l'existance d'une requête "POST" et recupère l'information contenu dans le bar de recherche d'ID "recherche-form"
     if request.method == 'POST':
-        #Creation d'une variable qui contient le critere de recherche
         
+        #Creation d'une variable qui contient le critere de recherche
         critere = request.form['input-critere1']
 
         #Validation de l'existance d'une deuxième critère de recherche
         if request.form['input-critere2'] == "":
+
             #Si l'input[''input-critere2] est un String vide, on sorte du conditionnel
             pass
         else:

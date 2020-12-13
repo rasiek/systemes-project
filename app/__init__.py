@@ -15,6 +15,6 @@ app = Flask(__name__)
 from app import routes
 
 #Appel aux scrappers quand on initialise le serveur pour alimenter la base de données
-# gamespotScrapper()
-# gamewaveScrapper()
+gamespotScrapper()
+gamewaveScrapper()
 

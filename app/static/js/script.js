@@ -1,3 +1,4 @@
+
 var checkbox = document.getElementById('add-critere2')
 checkbox.addEventListener('change', function() {
     if (this.checked) {

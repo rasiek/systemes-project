@@ -63,7 +63,6 @@ def gamespotScrapper():
 
                 #Conditionnel pour verifier si le titre extrait de l'article existe déjà dans la base de données 
                 if title in liste_verification:
-
                     #print('article déjà enregistré')
                     pass
 
