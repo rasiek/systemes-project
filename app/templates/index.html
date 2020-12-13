@@ -27,13 +27,13 @@
 
     {% if titre %}
     <div class="article">
-        <ul>
-            <li>{{ titre }}</li>
-            <li>{{ soustitre }}</li>
-            <li>{{ author }}</li>
-            <li>{{ text|safe }}</li>
-            <li><a href="{{ lien }}" target="_blank">Article Originale</a></li>
-        </ul>
+
+            <h1>{{ titre }}</h1>
+            <span class="first-span">{{ soustitre }}</span>
+            <span>Par: {% if author == 'None' %} Gamespot {% else %} {{ author }} {% endif %}</span>
+            <p>{{ text|safe }}</p>
+            <a href="{{ lien }}" target="_blank">Article Originale</a>
+
     </div>
     {% endif %}
 {% endblock %}

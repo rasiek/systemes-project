@@ -2,6 +2,7 @@
 Routes de l'application
 """
 #Importation des functions et modules pour le fonctionements des routes
+from app.scrappers.gamespot import gamespotScrapper
 from app.functions import rechercheQuery, rechercheQueryADeuxCri
 from flask import render_template, request
 from app import app

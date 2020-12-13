@@ -1,5 +1,5 @@
 """
-Functions d'insertion des articles dans la base de données et de recherche 
+Functions d'insertion et recherche des articles dans la base de données
 """
 import sqlite3
 
@@ -88,13 +88,48 @@ def rechercheQuery(critere):
     resultat = dbCursor.fetchone()
 
     #Impression en console pour verification
-    print(resultat)
+    #print(resultat)
 
     #Fermeture de la connexion
     dbCursor.close()
 
     #Envoie du resultat
     return resultat
+
+def verificationTitre():
+    """
+    Function qui recupere les titre des articles dans la base de données
+    """
+
+    #Creation de la connexion à la base de données
+    conn = sqlite3.connect('bd/arts.db')
+
+    #Creation du Cursor qui va gerer les requêtes
+    dbCursor = conn.cursor()
+
+    #Creation de la variable qui contient la requête de recherche SQL
+    recherche = """
+    select titre from articles 
+    """
+
+    #Execution de la requête avec le critere passée à la fonction
+    dbCursor.execute(recherche)
+
+    #Recuperation des resultats
+    resultats = dbCursor.fetchall()
+
+    #Création de liste vide pour enregistrer les titres 
+    titresInBD = []
+
+    #Deballage des tuples contenant les titres dans la liste créée
+    for resultat in resultats:
+        titresInBD.append(resultat[0])
+
+    #Fermeture de la connexion
+    dbCursor.close()
+
+    #Envoie des resultats
+    return titresInBD
 
 def rechercheQueryADeuxCri(critere1, critere2):
     """
@@ -106,6 +141,7 @@ def rechercheQueryADeuxCri(critere1, critere2):
 
     #Creation de la connexion à la base de données
     conn = sqlite3.connect('bd/arts.db')
+    
     #Creation d'une tuple avec les identifiants de chaque colonne
     conn.row_factory = sqlite3.Row
 
@@ -128,7 +164,7 @@ def rechercheQueryADeuxCri(critere1, critere2):
     resultat = dbCursor.fetchone()
 
     #Impression en console pour verification
-    print(resultat)
+    #print(resultat)
 
     #Fermeture de la connexion
     dbCursor.close()
