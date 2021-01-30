@@ -28,8 +28,11 @@ def gamespotScrapper():
     if gsNews.status_code == 200:
         gsSoup = BeautifulSoup(gsNews.text, "lxml")
 
+    
     #Utilisation des methodes find de la librairie bs pour chercher et recuperer les liens articles dans le site internet 
+    
     div_arts = gsSoup.find("div", attrs={"class": "horizontal-card-item"})
+
 
     #Création de la liste qui va contenir les liens
     as_links = []
