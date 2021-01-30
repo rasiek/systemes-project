@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="vp1-container">
+        <div class="hero-title">
+            <h1>Jeux-Vidéos</h1>
+        </div>
+
+        <div class="bar-recherche">
+            <form class="form-rech" id="form-recherche" method="POST">
+                <div>
+                    <input type="text" id="input-form" name="input-critere1" placeholder="Critère de recherche" required>
+                    <button id="btn" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+
+                <label for="add-critere">Ajouter critère de recherche</label>
+                <input type="checkbox" id="add-critere2" class="add-critere2">
+
+                
+                <input type="hidden" class="input-critere2" id="input-critere2" name="input-critere2" placeholder="Deuxième critère de recherche">  
+                
+            </form>
+
+        </div>
+    </div>
+
+
+    {% if titre %}
+    <div class="article">
+
+            <h1>{{ titre }}</h1>
+            <span class="first-span">{{ soustitre }}</span>
+            <span>Par: {% if author == 'None' %} Gamespot {% else %} {{ author }} {% endif %}</span>
+            <p>{{ text|safe }}</p>
+            <a href="{{ lien }}" target="_blank">Article Original</a>
+
+    </div>
+    {% elif noMatch %}
+        <div class="not-found">
+            <h1>Il n'y a pas d'articles avec les critères sugerès</br>D:</h1>
+        </div>
+    {% endif %}
+{% endblock %}
